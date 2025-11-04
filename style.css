@@ -1,0 +1,339 @@
+/* --- Basic Setup & New Color Theme --- */
+:root {
+    --bg-dark: #11071F;       /* Your dark purple background */
+    --bg-black: #000000;      /* Your black color */
+    --text-primary: #F8F8FF;  /* Your off-white text */
+    --accent-color: #9D4EDD;    /* A vibrant purple for highlights */
+    
+    /* New Gradient for Cards */
+    --card-gradient: linear-gradient(145deg, #1C0B2E, #11071F);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* New Gradient Background */
+    background: radial-gradient(ellipse at bottom, var(--bg-dark) 0%, var(--bg-black) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents timeline from causing horizontal scroll */
+}
+
+section {
+    padding: 100px 10%;
+    position: relative; /* Needed to show content above canvas */
+    z-index: 10;
+}
+
+h1, h2, h3 {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* --- 3D Background Canvas --- */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sits behind everything */
+}
+
+/* --- Navigation --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background-color: rgba(94, 10, 142, 0.5); /* Use your black with transparency */
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+/* --- Navigation --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background-color: rgba(0, 0, 0, 0.5); /* Use your black with transparency */
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+/* --- ADD THIS CODE --- */
+nav ul {
+    display: flex;      /* This makes the list items horizontal */
+    list-style: none;   /* This removes the bullet points */
+}
+
+/* --- AND ADD THIS CODE --- */
+nav ul li {
+    margin-left: 30px;  /* This adds the "space" between your links */
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+/* ... (the rest of your CSS continues below) ... */
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Home Section --- */
+#home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 40px;
+}
+.home-left { flex: 1; max-width: 600px; }
+.home-left .subtitle { font-size: 1.5rem; color: var(--accent-color); margin-bottom: 20px; }
+    .home-left .about-me { font-size: 1rem; color: var(--text-primary); margin-bottom: 30px; }
+    .social-links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .social-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        border: 1px solid var(--accent-color);
+        border-radius: 6px;
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: all 0.25s ease;
+        background: transparent;
+    }
+    .social-links a .icon {
+        width: 20px;
+        height: 20px;
+        flex: 0 0 20px;
+        fill: var(--text-primary);
+        transition: fill 0.2s ease, transform 0.15s ease;
+    }
+    .social-links a span { font-weight: 600; }
+    .social-links a:hover {
+        background-color: var(--accent-color);
+        color: var(--bg-black);
+    }
+    .social-links a:hover .icon { fill: var(--bg-black); transform: scale(1.05); }
+    .home-right { flex: 0.8; display: flex; justify-content: center; align-items: center; perspective: 1000px; }
+/* --- 3D HOVER EFFECT: NAME --- */
+#home-name { font-size: 4rem; transition: transform 0.3s ease, text-shadow 0.3s ease; }
+#home-name:hover { transform: scale(1.05) skew(-3deg); text-shadow: 0 0 8px var(--text-primary), 0 0 20px var(--accent-color); }
+
+/* --- 3D HOVER EFFECT: PHOTO --- */
+#profile-pic { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent-color); box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: transform 0.4s ease, box-shadow 0.4s ease; }
+#profile-pic:hover { transform: translateZ(30px) rotateY(15deg); box-shadow: 0 20px 40px rgba(0,0,0,0.7); }
+
+/* --- 3D HOVER EFFECT: SKILLS (Updated for Icons) --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    perspective: 1000px;
+}
+
+.skill-card {
+    background: var(--card-gradient);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #1C0B2E;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /* Flexbox to center icon and text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.skill-card img {
+    height: 50px; /* Adjust size as needed */
+    width: 50px;
+    object-fit: contain;
+    /* This makes SVG icons use the text color */
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
+.skill-card h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px) rotateX(10deg) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    color: var(--accent-color);
+}
+.skill-card:hover img {
+    /* This makes SVG icons use the accent color on hover */
+    filter: invert(41%) sepia(91%) saturate(1450%) hue-rotate(248deg) brightness(91%) contrast(90%);
+}
+
+
+/* --- Projects --- */
+.project-card {
+    background: var(--card-gradient);
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #1C0B2E;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+.project-card h3 { color: var(--accent-color); margin-bottom: 10px; }
+
+/* --- Strengths Section --- */
+.strengths-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+.strength-card {
+    background: var(--bg-black);
+    border: 1px solid var(--accent-color);
+    color: var(--text-primary);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.strength-card:hover {
+    background: var(--accent-color);
+    color: var(--bg-black);
+    transform: scale(1.1);
+}
+
+/* --- Unique Timeline (Education & Internship) --- */
+#experience {
+    background: var(--bg-black); /* Use your black for this section */
+}
+.timeline {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+}
+/* The vertical line */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--accent-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 3px;
+    box-shadow: 0 0 15px var(--accent-color);
+}
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+}
+/* Odd items on the left */
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+/* Even items on the right */
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+/* The "dot" on the timeline */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--text-primary);
+    border: 4px solid var(--accent-color);
+    top: 25px;
+    border-radius: 50%;
+    z-index: 20;
+}
+.timeline-item:nth-child(even)::after {
+    left: -10px;
+}
+.timeline-content {
+    padding: 20px 30px;
+    background: var(--card-gradient);
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid #1C0B2E;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+.timeline-content:hover {
+    transform: scale(1.03);
+}
+.timeline-content h3 {
+    color: var(--accent-color);
+}
+.timeline-date {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+/* --- Contact Footer --- */
+#contact {
+    text-align: center;
+    background: transparent;
+    min-height: 20vh;
+    padding-top: 60px;
+}
+#contact a { color: var(--accent-color); text-decoration: none; transition: color 0.3s ease; }
+#contact a:hover { color: var(--text-primary); }
